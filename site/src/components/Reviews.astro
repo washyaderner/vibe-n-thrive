@@ -24,6 +24,11 @@ const reviews = [
 function stars(rating: number) {
   return Array.from({ length: 5 }, (_, i) => i < rating ? 'filled' : 'empty');
 }
+
+// Sort reviews: longest goes to the right column, shorter ones stack on the left
+const sorted = [...reviews].sort((a, b) => a.text.length - b.text.length);
+const shortReviews = sorted.slice(0, -1);
+const longReview = sorted[sorted.length - 1];
 ---
 
 <section class="reviews section" id="reviews">
@@ -36,60 +41,65 @@ function stars(rating: number) {
       </p>
     </div>
 
-    <div class="reviews__track-wrapper">
-    <div class="reviews__track" id="reviews-track">
-      {reviews.map(review => (
+    <div class="reviews__grid">
+      <div class="reviews__col reviews__col--short">
+        {shortReviews.map(review => (
+          <div class="reviews__card liquid-glass">
+            <div class="reviews__stars">
+              {stars(review.rating).map(state => (
+                <span class={`reviews__star reviews__star--${state}`}>&#9733;</span>
+              ))}
+            </div>
+            <p class="reviews__text">{review.text}</p>
+            <div class="reviews__meta">
+              <span class="reviews__author">{review.author}</span>
+              <span class="reviews__date">{review.date}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="reviews__col reviews__col--long">
         <div class="reviews__card liquid-glass">
           <div class="reviews__stars">
-            {stars(review.rating).map(state => (
+            {stars(longReview.rating).map(state => (
               <span class={`reviews__star reviews__star--${state}`}>&#9733;</span>
             ))}
           </div>
-          <p class="reviews__text">{review.text}</p>
+          <p class="reviews__text">{longReview.text}</p>
           <div class="reviews__meta">
-            <span class="reviews__author">{review.author}</span>
-            <span class="reviews__date">{review.date}</span>
+            <span class="reviews__author">{longReview.author}</span>
+            <span class="reviews__date">{longReview.date}</span>
           </div>
         </div>
-      ))}
-    </div>
-    </div>
-
-    <div class="reviews__nav">
-      <button class="reviews__btn" id="prev-review" aria-label="Previous review">&#8592;</button>
-      <div class="reviews__dots" id="review-dots"></div>
-      <button class="reviews__btn" id="next-review" aria-label="Next review">&#8594;</button>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .reviews__track-wrapper {
-    position: relative;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  }
-
-  .reviews__track {
-    display: flex;
-    gap: 1.5rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+  .reviews__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
     padding: 1rem 0 2rem;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
   }
 
-  .reviews__track::-webkit-scrollbar {
-    display: none;
+  .reviews__col--short {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .reviews__col--long {
+    display: flex;
+  }
+
+  .reviews__col--long .reviews__card {
+    flex: 1;
   }
 
   .reviews__card {
-    min-width: min(360px, 85vw);
-    max-width: 400px;
-    flex-shrink: 0;
-    scroll-snap-align: start;
     padding: 2rem;
     box-shadow:
       0 0 20px rgba(13, 148, 136, 0.12),
@@ -140,119 +150,14 @@ function stars(rating: number) {
     color: var(--color-gray-400);
   }
 
-  .reviews__nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
+  @media (max-width: 768px) {
+    .reviews__grid {
+      grid-template-columns: 1fr;
+    }
 
-  .reviews__btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--color-gray-200);
-    background: rgba(255, 255, 255, 0.6);
-    cursor: pointer;
-    font-size: 1.125rem;
-    color: var(--color-gray-600);
-    transition: all var(--transition-base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .reviews__btn:hover {
-    background: var(--color-teal);
-    color: white;
-    border-color: var(--color-teal);
-  }
-
-  .reviews__dots {
-    display: flex;
-    gap: 8px;
-  }
-
-  :global(.reviews__dot) {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-gray-200);
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-base);
-    padding: 0;
-  }
-
-  :global(.reviews__dot.active) {
-    background: var(--color-teal);
-    width: 24px;
-    border-radius: 100px;
+    .reviews__col--long {
+      display: block;
+    }
   }
 </style>
 
-<script>
-  const track = document.getElementById('reviews-track');
-  const prevBtn = document.getElementById('prev-review');
-  const nextBtn = document.getElementById('next-review');
-  const dotsContainer = document.getElementById('review-dots');
-
-  if (track && dotsContainer) {
-    const cards = track.querySelectorAll('.reviews__card');
-    let currentIndex = 0;
-
-    // Create dots
-    cards.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = `reviews__dot${i === 0 ? ' active' : ''}`;
-      dot.setAttribute('aria-label', `Go to review ${i + 1}`);
-      dot.addEventListener('click', () => scrollToCard(i));
-      dotsContainer.appendChild(dot);
-    });
-
-    function scrollToCard(index: number) {
-      const card = cards[index] as HTMLElement;
-      if (!card) return;
-      track!.scrollTo({ left: card.offsetLeft - 16, behavior: 'smooth' });
-      currentIndex = index;
-      updateDots();
-    }
-
-    function updateDots() {
-      dotsContainer!.querySelectorAll('.reviews__dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-      });
-    }
-
-    prevBtn?.addEventListener('click', () => {
-      currentIndex = Math.max(0, currentIndex - 1);
-      scrollToCard(currentIndex);
-    });
-
-    nextBtn?.addEventListener('click', () => {
-      currentIndex = Math.min(cards.length - 1, currentIndex + 1);
-      scrollToCard(currentIndex);
-    });
-
-    // Update dots on scroll
-    let scrollTimeout: ReturnType<typeof setTimeout>;
-    track.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        const scrollLeft = track!.scrollLeft;
-        let closestIndex = 0;
-        let closestDist = Infinity;
-        cards.forEach((card, i) => {
-          const dist = Math.abs((card as HTMLElement).offsetLeft - scrollLeft - 16);
-          if (dist < closestDist) {
-            closestDist = dist;
-            closestIndex = i;
-          }
-        });
-        currentIndex = closestIndex;
-        updateDots();
-      }, 50);
-    }, { passive: true });
-  }
-</script>

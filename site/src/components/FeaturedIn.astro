@@ -1,0 +1,151 @@
+---
+
+---
+
+<section class="featured-in">
+  <div class="container">
+    <h3 class="featured-in__title">Vibroacoustic Therapy has been featured in...</h3>
+    <div class="featured-in__logos">
+      <span class="featured-in__logo featured-in__logo--forbes">Forbes</span>
+      <span class="featured-in__logo featured-in__logo--times">The Times</span>
+      <span class="featured-in__logo featured-in__logo--fox">FOX</span>
+      <span class="featured-in__logo featured-in__logo--nypost">New York Post</span>
+      <span class="featured-in__logo featured-in__logo--laweekly">LA Weekly</span>
+      <span class="featured-in__logo featured-in__logo--wired">WIRED</span>
+      <span class="featured-in__logo featured-in__logo--marieclaire">marie claire</span>
+      <span class="featured-in__logo featured-in__logo--yahoo">yahoo! news</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-in {
+    padding: 3rem 1.5rem;
+  }
+
+  .featured-in__title {
+    text-align: center;
+    color: var(--color-gray-900);
+    font-family: var(--font-sans);
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0;
+  }
+
+  .featured-in__logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem 1.5rem;
+    align-items: center;
+    justify-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .featured-in__logo {
+    color: var(--color-gray-900);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    opacity: 0.85;
+    transition: opacity var(--transition-base);
+  }
+
+  .featured-in__logo:hover {
+    opacity: 1;
+  }
+
+  .featured-in__logo--forbes {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2rem;
+    font-style: italic;
+    letter-spacing: 0.04em;
+  }
+
+  .featured-in__logo--times {
+    font-family: 'Times New Roman', Georgia, serif;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .featured-in__logo--fox {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+  }
+
+  .featured-in__logo--nypost {
+    font-family: 'Times New Roman', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .featured-in__logo--laweekly {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .featured-in__logo--wired {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+  }
+
+  .featured-in__logo--marieclaire {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+  }
+
+  .featured-in__logo--yahoo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 768px) {
+    .featured-in__logos {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 1rem;
+    }
+
+    .featured-in__logo {
+      font-size: 1.125rem;
+    }
+
+    .featured-in__logo--forbes {
+      font-size: 1.5rem;
+    }
+
+    .featured-in__logo--fox {
+      font-size: 1.5rem;
+    }
+
+    .featured-in__logo--times,
+    .featured-in__logo--nypost {
+      font-size: 1rem;
+    }
+
+    .featured-in__logo--laweekly,
+    .featured-in__logo--wired,
+    .featured-in__logo--marieclaire,
+    .featured-in__logo--yahoo {
+      font-size: 1.125rem;
+    }
+  }
+</style>
