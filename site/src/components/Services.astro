@@ -14,7 +14,7 @@ const services = [
     title: 'Targeted Pain Relief',
     short: 'Focused vibration therapy for specific areas of pain, tension, or injury.',
     description: 'This precision session concentrates therapeutic vibrations on your areas of greatest need — whether that\'s lower back pain, neck tension, joint stiffness, or injury recovery. Our therapists adjust frequency and amplitude to match your specific condition, delivering relief where you need it most.',
-    duration: '45 min',
+    duration: '60 min',
   },
   {
     id: 'stress-anxiety',
@@ -30,7 +30,15 @@ const services = [
     title: 'Recovery & Mobility',
     short: 'Enhance athletic recovery and improve range of motion through vibrational therapy.',
     description: 'Athletes and active individuals use this session to accelerate recovery between workouts, reduce muscle soreness (DOMS), and improve flexibility. The therapeutic vibrations increase blood flow to fatigued muscles, break up fascial adhesions, and help restore full range of motion faster than passive recovery alone.',
-    duration: '45 min',
+    duration: '60 min',
+  },
+  {
+    id: 'chakra-alignment',
+    icon: '\u2726',
+    title: 'Chakra Alignment',
+    short: 'Vibrational tuning designed to balance and align your body\'s seven energy centers.',
+    description: 'Each chakra resonates at a specific frequency. This session uses precisely tuned vibrations matched to the natural frequency of each energy center — from the grounding tones of the root chakra to the elevated frequencies of the crown. As the vibrations move through your body, blockages are gently released and energy flow is restored, bringing your physical, emotional, and spiritual bodies back into harmony.',
+    duration: '60 min',
   },
 ];
 ---
@@ -45,57 +53,86 @@ const services = [
       </p>
     </div>
 
-    <div class="services__grid">
-      {services.map(service => (
-        <a href={`#${service.id}`} class="services__card glass">
+    <div class="services__grid" id="services-grid">
+      {services.map((service, i) => (
+        <button
+          class="services__card glass"
+          data-index={i}
+          style={`--delay: ${i * 0.1}s`}
+        >
           <span class="services__icon">{service.icon}</span>
           <h3 class="services__title">{service.title}</h3>
           <p class="services__desc">{service.short}</p>
           <span class="services__duration">{service.duration}</span>
-        </a>
+        </button>
       ))}
+    </div>
+
+    <div class="services__detail" id="services-detail">
+      <div class="services__detail-inner" id="services-detail-inner">
+        <button class="services__detail-close" id="services-detail-close" aria-label="Close detail">&times;</button>
+        {services.map((service, i) => (
+          <div class="services__detail-panel" data-detail={i} id={service.id}>
+            <h3 class="services__detail-title">{service.title}</h3>
+            <span class="services__detail-duration">{service.duration} session</span>
+            <p class="services__detail-text">{service.description}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Detailed descriptions (scroll targets) -->
-<section class="services-detail section" id="services-detail">
-  <div class="container container--narrow">
-    <p class="section-label">In Detail</p>
-    <h2 class="section-title">How Each Therapy Works</h2>
-
-    {services.map(service => (
-      <div class="detail" id={service.id}>
-        <h3 class="detail__title">{service.title}</h3>
-        <span class="detail__duration">{service.duration} session</span>
-        <p class="detail__text">{service.description}</p>
-      </div>
-    ))}
-  </div>
-</section>
-
 <style>
+  /* --- Grid --- */
   .services__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
+  /* --- Card base --- */
   .services__card {
     display: block;
     padding: 2rem;
+    text-align: left;
     text-decoration: none;
     color: inherit;
-    transition: all 0.4s var(--ease-out);
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
     cursor: pointer;
+    transition: all 0.4s var(--ease-out);
+    /* Scroll-in animation: start hidden */
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .services__card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s var(--ease-out) var(--delay),
+                transform 0.6s var(--ease-out) var(--delay),
+                box-shadow 0.4s var(--ease-out),
+                border-color 0.4s var(--ease-out);
   }
 
   .services__card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    transform: translateY(-6px);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.08),
+      0 0 0 2px rgba(13, 148, 136, 0.15);
     color: inherit;
   }
 
+  .services__card.is-active {
+    border-color: var(--color-teal);
+    box-shadow:
+      0 0 0 2px var(--color-teal),
+      0 8px 30px rgba(13, 148, 136, 0.18);
+  }
+
+  /* --- Icon with pulse --- */
   .services__icon {
     display: inline-flex;
     align-items: center;
@@ -108,6 +145,17 @@ const services = [
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1.25rem;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .services__card:hover .services__icon {
+    transform: scale(1.1);
+    animation: icon-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes icon-pulse {
+    0%, 100% { transform: scale(1.1); }
+    50% { transform: scale(1.18); }
   }
 
   .services__title {
@@ -132,27 +180,77 @@ const services = [
     border-radius: 100px;
   }
 
-  /* Detail section */
-  .services-detail {
-    padding-top: 2rem;
+  /* --- Inline detail panel --- */
+  .services__detail {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s var(--ease-out);
+    margin-top: 0;
   }
 
-  .detail {
-    padding: 2.5rem 0;
-    border-bottom: 1px solid var(--color-gray-100);
-    scroll-margin-top: 6rem;
+  .services__detail.is-open {
+    grid-template-rows: 1fr;
+    margin-top: 2rem;
   }
 
-  .detail:last-child {
-    border-bottom: none;
+  .services__detail-inner {
+    overflow: hidden;
+    position: relative;
   }
 
-  .detail__title {
+  .services__detail.is-open .services__detail-inner {
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+  }
+
+  .services__detail-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    color: var(--color-gray-400);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+    transition: color var(--transition-base);
+    z-index: 1;
+    display: none;
+  }
+
+  .services__detail.is-open .services__detail-close {
+    display: block;
+  }
+
+  .services__detail-close:hover {
+    color: var(--color-gray-800);
+  }
+
+  .services__detail-panel {
+    display: none;
+    animation: detail-fade-in 0.4s var(--ease-out);
+  }
+
+  .services__detail-panel.is-active {
+    display: block;
+  }
+
+  @keyframes detail-fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .services__detail-title {
     font-size: 1.375rem;
     margin-bottom: 0.5rem;
   }
 
-  .detail__duration {
+  .services__detail-duration {
     display: inline-block;
     font-size: 0.8125rem;
     font-weight: 600;
@@ -160,9 +258,87 @@ const services = [
     margin-bottom: 1rem;
   }
 
-  .detail__text {
+  .services__detail-text {
     font-size: 1rem;
     color: var(--color-gray-600);
     line-height: 1.8;
+    max-width: 65ch;
+  }
+
+  @media (max-width: 900px) {
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services__detail.is-open .services__detail-inner {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .services__grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
+
+<script>
+  // --- Scroll-triggered staggered entrance ---
+  const cards = document.querySelectorAll('.services__card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach(card => observer.observe(card));
+
+  // --- Click to expand detail ---
+  const detail = document.getElementById('services-detail');
+  const panels = document.querySelectorAll('.services__detail-panel');
+  const closeBtn = document.getElementById('services-detail-close');
+  let activeIndex: number | null = null;
+
+  function openDetail(index: number) {
+    // Update active card
+    cards.forEach(c => c.classList.remove('is-active'));
+    cards[index]?.classList.add('is-active');
+
+    // Update active panel
+    panels.forEach(p => p.classList.remove('is-active'));
+    panels[index]?.classList.add('is-active');
+
+    // Open container
+    detail?.classList.add('is-open');
+    activeIndex = index;
+
+    // Scroll detail into view after animation
+    setTimeout(() => {
+      detail?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }
+
+  function closeDetail() {
+    detail?.classList.remove('is-open');
+    cards.forEach(c => c.classList.remove('is-active'));
+    panels.forEach(p => p.classList.remove('is-active'));
+    activeIndex = null;
+  }
+
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => {
+      if (activeIndex === i) {
+        closeDetail();
+      } else {
+        openDetail(i);
+      }
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeDetail);
+</script>
