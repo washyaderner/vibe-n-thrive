@@ -1,0 +1,199 @@
+---
+
+---
+
+<section class="phenomena section" id="phenomena">
+  <div class="container">
+    <h2 class="phenomena__title">VAT Utilizes These Three Main Phenomena</h2>
+
+    <div class="phenomena__tabs" role="tablist">
+      <button class="phenomena__tab phenomena__tab--active" role="tab" aria-selected="true" data-tab="entrainment">Brainwave Entrainment</button>
+      <button class="phenomena__tab" role="tab" aria-selected="false" data-tab="cymatics">Cymatics</button>
+      <button class="phenomena__tab" role="tab" aria-selected="false" data-tab="intention">Intention</button>
+    </div>
+
+    <div class="phenomena__panel phenomena__panel--active" data-panel="entrainment">
+      <p class="phenomena__text">
+        Brainwave entrainment is a method used to stimulate the brain into entering a specific state by using
+        pulsing sounds, lights, or electromagnetic fields. Different conscious states are associated with distinct
+        dominant brainwave frequencies. At Vibe'n Thrive, we primarily focus on the theta and alpha brainwave
+        states. Our goal is to guide your tired brain out of the monotonous beta state and into a more relaxed,
+        rejuvenating state where true restoration can occur.
+      </p>
+    </div>
+
+    <div class="phenomena__panel" data-panel="cymatics">
+      <p class="phenomena__text">
+        Cymatics is the study of sound wave phenomena through liquid and loose particulate material. Since the body is approximately 70% water, Vibroacoustic therapy applies the principles of cymatics to create movement, with the potential to restructure cells and DNA in a more harmonious way.
+      </p>
+    </div>
+
+    <div class="phenomena__panel" data-panel="intention">
+      <p class="phenomena__text">
+        Frequency + Intention + Proper Application = Powerful Healing. Through intention setting, we work with you to align your focus and energy toward a specific goal or desired state. When combined with the healing vibrations of vibroacoustics, intentions gain amplified power, catalyzing deep and profound emotional and physical transformations.
+      </p>
+    </div>
+
+    <div class="phenomena__grid">
+      <div class="phenomena__card">
+        <img class="phenomena__icon" src="/images/icons/tension-relief.png" alt="Easing of physical and emotional tension" loading="lazy" />
+        <p class="phenomena__label">Easing of physical and emotional tension.</p>
+      </div>
+
+      <div class="phenomena__card">
+        <img class="phenomena__icon" src="/images/icons/stress-relief.png" alt="Stress relief" loading="lazy" />
+        <p class="phenomena__label">Stress relief.</p>
+      </div>
+
+      <div class="phenomena__card">
+        <img class="phenomena__icon" src="/images/icons/cellular-homeostasis.png" alt="Promoting balance through cellular homeostasis" loading="lazy" />
+        <p class="phenomena__label">Promoting balance of the body and mind through the support of cellular homeostasis.</p>
+      </div>
+
+      <div class="phenomena__card">
+        <img class="phenomena__icon" src="/images/icons/deep-meditation.png" alt="Acceleration into deep meditative states" loading="lazy" />
+        <p class="phenomena__label">Acceleration into deep meditative states.</p>
+      </div>
+
+      <div class="phenomena__card">
+        <img class="phenomena__icon" src="/images/icons/performance-recovery.png" alt="Performance enhancement and recovery" loading="lazy" />
+        <p class="phenomena__label">Supports performance enhancement and recovery from physical activity.</p>
+      </div>
+
+      <div class="phenomena__card">
+        <img class="phenomena__icon" src="/images/icons/elevated-mood.png" alt="Elevated mood" loading="lazy" />
+        <p class="phenomena__label">Elevated mood.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .phenomena {
+    padding: var(--section-pad) 0;
+  }
+
+  .phenomena__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-gray-900);
+    margin-bottom: 2rem;
+  }
+
+  .phenomena__tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .phenomena__tab {
+    background: none;
+    border: none;
+    color: var(--color-gray-600);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 0.25rem;
+    border-bottom: 3px solid transparent;
+    transition: var(--transition-base);
+  }
+
+  .phenomena__tab:hover {
+    color: var(--color-teal);
+  }
+
+  .phenomena__tab--active {
+    color: var(--color-teal);
+    border-bottom-color: var(--color-teal);
+  }
+
+  .phenomena__panel {
+    display: none;
+  }
+
+  .phenomena__panel--active {
+    display: block;
+  }
+
+  .phenomena__text {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--color-gray-600);
+    max-width: 900px;
+    margin-inline: auto;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .phenomena__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 2rem;
+  }
+
+  .phenomena__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .phenomena__icon {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+  }
+
+  .phenomena__label {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--color-gray-600);
+    max-width: 240px;
+  }
+
+  @media (max-width: 700px) {
+    .phenomena__tabs {
+      gap: 1rem;
+    }
+
+    .phenomena__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .phenomena__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll('.phenomena__tab');
+  const panels = document.querySelectorAll('.phenomena__panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('phenomena__tab--active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach(p => p.classList.remove('phenomena__panel--active'));
+
+      tab.classList.add('phenomena__tab--active');
+      tab.setAttribute('aria-selected', 'true');
+
+      const target = tab.getAttribute('data-tab');
+      const panel = document.querySelector(`[data-panel="${target}"]`);
+      if (panel) panel.classList.add('phenomena__panel--active');
+    });
+  });
+</script>
