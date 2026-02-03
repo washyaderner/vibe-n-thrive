@@ -12,8 +12,11 @@ const links = [
 <nav class="nav" id="nav">
   <div class="nav__inner">
     <a href="#" class="nav__logo">
-      <span class="nav__logo-text">Vibe'N Thrive</span>
-      <span class="nav__logo-sub">Vibro-Acoustic Therapy</span>
+      <img src="/images/logo.png" alt="Vibe'N Thrive logo" class="nav__logo-icon" />
+      <div class="nav__logo-text-wrap">
+        <span class="nav__logo-text">Vibe'N Thrive</span>
+        <span class="nav__logo-sub">Vibro-Acoustic Therapy</span>
+      </div>
     </a>
 
     <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -63,6 +66,20 @@ const links = [
   .nav__logo {
     text-decoration: none;
     color: var(--color-gray-900);
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .nav__logo-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .nav__logo-text-wrap {
+    display: flex;
+    flex-direction: column;
   }
 
   .nav__logo-text {
