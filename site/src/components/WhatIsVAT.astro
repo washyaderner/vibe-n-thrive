@@ -50,18 +50,6 @@
           </div>
         </div>
 
-        <div class="vat__benefits">
-          <h3>Research-Backed Benefits</h3>
-          <ul class="vat__benefit-list" role="list">
-            <li>Significant reduction in chronic pain and muscle tension</li>
-            <li>Decreased anxiety and cortisol levels</li>
-            <li>Improved sleep quality and duration</li>
-            <li>Enhanced circulation and lymphatic drainage</li>
-            <li>Accelerated muscle recovery after exercise</li>
-            <li>Reduced symptoms of fibromyalgia and arthritis</li>
-            <li>Improved range of motion and flexibility</li>
-          </ul>
-        </div>
       </div>
 
       <div class="vat__visual">
@@ -83,6 +71,35 @@
           class="vat__bed-image"
           loading="lazy"
         />
+      </div>
+    </div>
+
+    <div class="vat__bottom-grid">
+      <div class="vat__benefits">
+        <h3>Our Therapies Can Help With:</h3>
+        <ul class="vat__benefit-list" role="list">
+          <li>Sleep deprivation, insomnia, and poor rest</li>
+          <li>Anxiety, depression, and stress</li>
+          <li>Emotional blockage and release</li>
+          <li>Chronic pain, headaches, and internal pain</li>
+          <li>Detoxifying organs and muscles</li>
+          <li>Releasing limiting belief systems</li>
+          <li>Reactivating creativity and healing</li>
+          <li>Cell rejuvenation and bone regrowth</li>
+          <li>Balancing adrenals and endorphins</li>
+          <li>Deepening meditation and subconscious connection</li>
+          <li>Activating chakras and energy systems</li>
+          <li>Raising consciousness and spiritual alignment</li>
+        </ul>
+      </div>
+
+      <div class="vat__sound-table">
+        <h3>Vibrational Sound Table Therapy</h3>
+        <p>Our Vibrational Sound Table Therapy uses frequencies to resonate through the entire body, vibrating the organs, muscles, and bones. This therapy combines ancient wisdom with modern technology to create a deeply immersive and effective experience.</p>
+        <p>The table emits low frequencies that sync with healing music, promoting brainwave entrainment and inducing a meditative state while releasing energy blockages and restoring balance.</p>
+
+        <h3>Cutting-Edge Technology</h3>
+        <p>Our advanced sound therapy technology turns your entire body into a resonating speaker, sending healing vibrations through every organ and cell. Using electromagnetic pulsing, masculine and feminine energy balance, Vogel crystals, and Tesla Coils, our BioVibe tables amplify healing in a revolutionary way.</p>
       </div>
     </div>
   </div>
@@ -146,6 +163,17 @@
     line-height: 1.6;
   }
 
+  .vat__bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .vat__benefits {
+    padding-left: 4rem;
+  }
+
   .vat__benefits h3 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
@@ -161,7 +189,7 @@
     font-size: 0.9375rem;
     color: var(--color-gray-600);
     position: relative;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    border-bottom: none;
   }
 
   .vat__benefit-list li::before {
@@ -216,6 +244,27 @@
     filter: hue-rotate(-55deg) saturate(0.8) brightness(1.05);
   }
 
+  .vat__sound-table h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  .vat__sound-table h3:first-child {
+    margin-top: 0;
+  }
+
+  .vat__sound-table p {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .vat__sound-table p:last-child {
+    margin-bottom: 0;
+  }
+
   @media (max-width: 900px) {
     .vat__grid {
       grid-template-columns: 1fr;
@@ -224,6 +273,11 @@
 
     .vat__visual {
       position: static;
+    }
+
+    .vat__bottom-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
   }
 </style>
