@@ -4,6 +4,7 @@
 
 <section class="hero" id="hero">
   <div class="container hero__inner">
+    <img src="/images/logo.svg" alt="Vibe'N Thrive logo" class="hero__logo" />
     <p class="section-label">Vibroacoustic Therapy</p>
     <h1 class="hero__title hero__highlight">
       Let go of your mind.<br />
@@ -30,6 +31,13 @@
 
   .hero__inner {
     max-width: 720px;
+  }
+
+  .hero__logo {
+    width: clamp(80px, 12vw, 120px);
+    height: auto;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 4px 12px rgba(13, 148, 136, 0.15));
   }
 
   .hero__title {
