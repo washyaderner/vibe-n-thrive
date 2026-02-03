@@ -4,13 +4,15 @@
 
 <section class="hero" id="hero">
   <div class="container hero__inner">
-    <img src="/images/logo.svg" alt="Vibe'N Thrive logo" class="hero__logo" />
     <p class="section-label">Vibroacoustic Therapy</p>
-    <h1 class="hero__title hero__highlight">
-      Let go of your mind.<br />
-      Let go of your body.<br />
-      Find your self.
-    </h1>
+    <div class="hero__row">
+      <h1 class="hero__title hero__highlight">
+        Let go of your mind.<br />
+        Let go of your body.<br />
+        Find your self.
+      </h1>
+      <img src="/images/logo.svg" alt="Vibe'N Thrive logo" class="hero__logo" />
+    </div>
     <p class="hero__subtitle">
       A fully immersive, therapeutic sound experience designed to promote accelerated entry into deep meditative states.
     </p>
@@ -30,22 +32,31 @@
   }
 
   .hero__inner {
-    max-width: 720px;
+    max-width: 960px;
+  }
+
+  .hero__row {
+    display: flex;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
   }
 
   .hero__logo {
-    width: clamp(80px, 12vw, 120px);
+    width: clamp(160px, 22vw, 280px);
     height: auto;
-    margin-bottom: 1.5rem;
-    filter: drop-shadow(0 4px 12px rgba(13, 148, 136, 0.15));
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 20px rgba(71, 100, 148, 0.18));
   }
 
   .hero__title {
     font-size: clamp(2.75rem, 6vw, 4.5rem);
     font-weight: 900;
     line-height: 1.08;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     letter-spacing: -0.03em;
+    flex: 1;
+    min-width: 0;
   }
 
   .hero__highlight {
@@ -67,6 +78,27 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .hero__row {
+      flex-direction: column-reverse;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .hero__logo {
+      width: clamp(120px, 35vw, 180px);
+    }
+
+    .hero__subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero__actions {
+      justify-content: center;
+    }
   }
 
   @media (max-width: 600px) {
