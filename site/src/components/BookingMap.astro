@@ -1,0 +1,123 @@
+---
+
+---
+
+<section class="booking section" id="booking">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Visit Us</p>
+      <h2 class="section-title">Location & Booking</h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">
+        We're located in Tigard, Oregon. Book your session online — it only takes a minute.
+      </p>
+    </div>
+
+    <div class="booking__grid">
+      <div class="booking__map glass">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.5!2d-122.769!3d45.429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDI1JzQ0LjQiTiAxMjLCsDQ2JzA4LjQiVw!5e0!3m2!1sen!2sus!4v1700000000000"
+          width="100%"
+          height="100%"
+          style="border:0; border-radius: 20px;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Vibe & Thrive Therapy Location"
+        ></iframe>
+        <div class="booking__address">
+          <p><strong>Vibe & Thrive Therapy</strong></p>
+          <p>10580 SW McDonald St</p>
+          <p>Suites #102 & #202</p>
+          <p>Tigard, OR 97224</p>
+          <p class="booking__phone">
+            <a href="tel:+12083530597">(208) 353-0597</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="booking__calendar glass">
+        <h3 class="booking__calendar-title">Book Your Session</h3>
+        <p class="booking__calendar-desc">
+          Select a time that works for you. Your first session includes a brief consultation.
+        </p>
+        <div class="booking__calendly-wrap">
+          <iframe
+            src="https://calendly.com/vibenthrive/60min"
+            width="100%"
+            height="580"
+            frameborder="0"
+            title="Schedule a session with Vibe & Thrive"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .booking__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .booking__map {
+    padding: 1.25rem;
+    overflow: hidden;
+  }
+
+  .booking__map iframe {
+    width: 100%;
+    height: 320px;
+    border-radius: 16px;
+  }
+
+  .booking__address {
+    padding: 1.25rem 0.5rem 0.25rem;
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+  }
+
+  .booking__address strong {
+    color: var(--color-gray-900);
+    font-size: 1rem;
+  }
+
+  .booking__phone {
+    margin-top: 0.5rem;
+  }
+
+  .booking__phone a {
+    color: var(--color-teal);
+    font-weight: 600;
+    font-size: 1.0625rem;
+  }
+
+  .booking__calendar {
+    padding: 2rem;
+  }
+
+  .booking__calendar-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .booking__calendar-desc {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    margin-bottom: 1.5rem;
+  }
+
+  .booking__calendly-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 900px) {
+    .booking__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

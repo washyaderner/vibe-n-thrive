@@ -1,0 +1,136 @@
+---
+// Mock blog posts — will be replaced with Contentful data
+const posts = [
+  {
+    title: '5 Signs Your Body Needs Vibration Therapy',
+    excerpt: 'Chronic tension, poor sleep, and lingering pain are signals your body is asking for help. Learn how VAT addresses these symptoms at the root.',
+    date: 'Jan 28, 2026',
+    category: 'Wellness',
+    slug: '#',
+  },
+  {
+    title: 'VAT vs. Traditional Massage: What\'s the Difference?',
+    excerpt: 'Both offer relief, but they work in fundamentally different ways. Here\'s how vibration therapy reaches deeper than hands alone.',
+    date: 'Jan 15, 2026',
+    category: 'Education',
+    slug: '#',
+  },
+  {
+    title: 'How Athletes Use Sound Therapy for Faster Recovery',
+    excerpt: 'From weekend warriors to pros, vibroacoustic therapy is becoming a go-to for reducing soreness and improving performance.',
+    date: 'Jan 3, 2026',
+    category: 'Recovery',
+    slug: '#',
+  },
+];
+---
+
+<section class="blog section" id="blog">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Blog</p>
+      <h2 class="section-title">Latest Insights</h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">
+        Explore the science, stories, and tips behind vibration therapy.
+      </p>
+    </div>
+
+    <div class="blog__grid">
+      {posts.map(post => (
+        <a href={post.slug} class="blog__card glass">
+          <div class="blog__image-placeholder">
+            <span>Article Image</span>
+          </div>
+          <div class="blog__content">
+            <div class="blog__meta">
+              <span class="blog__category">{post.category}</span>
+              <span class="blog__date">{post.date}</span>
+            </div>
+            <h3 class="blog__title">{post.title}</h3>
+            <p class="blog__excerpt">{post.excerpt}</p>
+            <span class="blog__read-more">Read more &rarr;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .blog__card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    transition: all 0.4s var(--ease-out);
+  }
+
+  .blog__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    color: inherit;
+  }
+
+  .blog__image-placeholder {
+    height: 200px;
+    background: linear-gradient(135deg, var(--color-gray-50), var(--color-gray-100));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-400);
+    font-size: 0.875rem;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .blog__content {
+    padding: 1.75rem;
+  }
+
+  .blog__meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog__category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-teal);
+    background: rgba(13, 148, 136, 0.08);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  .blog__date {
+    font-size: 0.8125rem;
+    color: var(--color-gray-400);
+  }
+
+  .blog__title {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .blog__excerpt {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .blog__read-more {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-teal);
+  }
+</style>

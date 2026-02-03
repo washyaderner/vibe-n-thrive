@@ -1,0 +1,235 @@
+---
+const tiers = [
+  {
+    name: 'Drop-In Alignment',
+    sessions: null,
+    price: '$70 – $100',
+    perSession: 'sliding scale',
+    description: 'A one-time reset session to ground, reconnect and bring your system back into harmony.',
+    features: [
+      'Single session — no commitment',
+      'Personalized frequency calibration',
+      'Post-session wellness guidance',
+    ],
+    featured: false,
+  },
+  {
+    name: 'The Reset',
+    sessions: 4,
+    price: '$240',
+    perSession: '$60/session',
+    description: 'A short journey to begin realignment, perfect for sharpening clarity, sleep and emotional flow.',
+    features: [
+      '4 progressive sessions',
+      'Personalized treatment plan',
+      'Clarity & sleep improvement focus',
+      'Session-to-session tracking',
+    ],
+    featured: false,
+  },
+  {
+    name: 'Harmony Deep Dive',
+    sessions: 8,
+    price: '$440',
+    perSession: '$55/session',
+    description: 'Dive deeper to reinforce new patterns of peace, mindfulness and inner guidance.',
+    features: [
+      '8 progressive sessions',
+      'Save $40 vs. drop-in rate',
+      'Deep pattern reinforcement',
+      'Mindfulness & inner guidance focus',
+      'Extended consultation included',
+    ],
+    featured: true,
+  },
+  {
+    name: 'Total Recalibration',
+    sessions: 12,
+    price: '$600',
+    perSession: '$50/session',
+    description: 'A transformative journey designed to support long-term clarity, balance and fulfillment.',
+    features: [
+      '12 progressive sessions',
+      'Best per-session value',
+      'Full transformative journey',
+      'Long-term clarity & balance',
+      'Priority scheduling',
+      'Comprehensive wellness plan',
+    ],
+    featured: false,
+  },
+];
+---
+
+<section class="pricing section" id="pricing">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Pricing</p>
+      <h2 class="section-title">Your Journey to Inner Harmony</h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">
+        Each session builds on the last to gently restore balance, clarity and peace.
+        Choose a path that fits where you are in your healing journey.
+      </p>
+    </div>
+
+    <div class="pricing__grid">
+      {tiers.map(tier => (
+        <div class={`pricing__card glass${tier.featured ? ' pricing__card--featured' : ''}`}>
+          {tier.featured && <div class="pricing__badge">Most Popular</div>}
+          <h3 class="pricing__card-title">{tier.name}</h3>
+          {tier.sessions && (
+            <p class="pricing__sessions">{tier.sessions} Sessions</p>
+          )}
+          <div class="pricing__price">
+            <span class="pricing__amount">{tier.price}</span>
+          </div>
+          <p class="pricing__per">{tier.perSession}</p>
+          <p class="pricing__desc">{tier.description}</p>
+          <ul class="pricing__features" role="list">
+            {tier.features.map(f => (
+              <li>{f}</li>
+            ))}
+          </ul>
+          <a href="#booking" class={`btn ${tier.featured ? 'btn--primary' : 'btn--outline'}`}>Book Now</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .pricing__card {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pricing__card--featured {
+    border: 2px solid var(--color-teal);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    transform: scale(1.04);
+    z-index: 1;
+  }
+
+  .pricing__badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--color-teal), var(--color-teal-dark));
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.375rem 1.25rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .pricing__card-title {
+    font-size: 1.1875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .pricing__sessions {
+    font-size: 0.8125rem;
+    color: var(--color-gray-400);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .pricing__price {
+    margin: 1.25rem 0 0.25rem;
+  }
+
+  .pricing__amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    letter-spacing: -0.02em;
+  }
+
+  .pricing__card--featured .pricing__amount {
+    font-size: 2.25rem;
+  }
+
+  .pricing__per {
+    font-size: 0.8125rem;
+    color: var(--color-gray-400);
+    margin-bottom: 1rem;
+  }
+
+  .pricing__desc {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 30ch;
+  }
+
+  .pricing__features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 2rem;
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  .pricing__features li {
+    padding: 0.4375rem 0;
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .pricing__features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-teal-light);
+  }
+
+  .pricing__card .btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: auto;
+  }
+
+  @media (max-width: 1100px) {
+    .pricing__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pricing__grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .pricing__card--featured {
+      transform: none;
+    }
+  }
+</style>

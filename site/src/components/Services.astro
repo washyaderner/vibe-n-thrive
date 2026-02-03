@@ -1,0 +1,168 @@
+---
+const services = [
+  {
+    id: 'full-body-vat',
+    icon: '~',
+    title: 'Full Body VAT Session',
+    short: 'Complete vibration therapy targeting your entire body for deep relaxation and pain relief.',
+    description: 'Our signature full-body session uses precisely calibrated low-frequency sound waves delivered through our specialized VAT table. The vibrations penetrate deep into muscle tissue and joints, promoting circulation, reducing inflammation, and triggering your body\'s natural relaxation response. Ideal for chronic pain, stress, and general wellness.',
+    duration: '60 min',
+  },
+  {
+    id: 'targeted-relief',
+    icon: '+',
+    title: 'Targeted Pain Relief',
+    short: 'Focused vibration therapy for specific areas of pain, tension, or injury.',
+    description: 'This precision session concentrates therapeutic vibrations on your areas of greatest need — whether that\'s lower back pain, neck tension, joint stiffness, or injury recovery. Our therapists adjust frequency and amplitude to match your specific condition, delivering relief where you need it most.',
+    duration: '45 min',
+  },
+  {
+    id: 'stress-anxiety',
+    icon: '*',
+    title: 'Stress & Anxiety Relief',
+    short: 'Sound-based therapy designed to calm the nervous system and promote mental clarity.',
+    description: 'Combining low-frequency vibrations with carefully selected soundscapes, this session is specifically designed to activate your parasympathetic nervous system. Research shows that VAT can significantly reduce cortisol levels, lower heart rate, and improve sleep quality. Perfect for anxiety, insomnia, and burnout recovery.',
+    duration: '60 min',
+  },
+  {
+    id: 'recovery-mobility',
+    icon: '^',
+    title: 'Recovery & Mobility',
+    short: 'Enhance athletic recovery and improve range of motion through vibrational therapy.',
+    description: 'Athletes and active individuals use this session to accelerate recovery between workouts, reduce muscle soreness (DOMS), and improve flexibility. The therapeutic vibrations increase blood flow to fatigued muscles, break up fascial adhesions, and help restore full range of motion faster than passive recovery alone.',
+    duration: '45 min',
+  },
+];
+---
+
+<section class="services section" id="services">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">Our Therapies</h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">
+        Each session is tailored to your body's needs. Click any service to learn more.
+      </p>
+    </div>
+
+    <div class="services__grid">
+      {services.map(service => (
+        <a href={`#${service.id}`} class="services__card glass">
+          <span class="services__icon">{service.icon}</span>
+          <h3 class="services__title">{service.title}</h3>
+          <p class="services__desc">{service.short}</p>
+          <span class="services__duration">{service.duration}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Detailed descriptions (scroll targets) -->
+<section class="services-detail section" id="services-detail">
+  <div class="container container--narrow">
+    <p class="section-label">In Detail</p>
+    <h2 class="section-title">How Each Therapy Works</h2>
+
+    {services.map(service => (
+      <div class="detail" id={service.id}>
+        <h3 class="detail__title">{service.title}</h3>
+        <span class="detail__duration">{service.duration} session</span>
+        <p class="detail__text">{service.description}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .services__card {
+    display: block;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s var(--ease-out);
+    cursor: pointer;
+  }
+
+  .services__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    color: inherit;
+  }
+
+  .services__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--color-teal-light), var(--color-teal));
+    color: var(--color-white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .services__title {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .services__desc {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .services__duration {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    background: rgba(13, 148, 136, 0.08);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  /* Detail section */
+  .services-detail {
+    padding-top: 2rem;
+  }
+
+  .detail {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--color-gray-100);
+    scroll-margin-top: 6rem;
+  }
+
+  .detail:last-child {
+    border-bottom: none;
+  }
+
+  .detail__title {
+    font-size: 1.375rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail__duration {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    margin-bottom: 1rem;
+  }
+
+  .detail__text {
+    font-size: 1rem;
+    color: var(--color-gray-600);
+    line-height: 1.8;
+  }
+</style>

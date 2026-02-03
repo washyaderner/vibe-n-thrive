@@ -1,0 +1,78 @@
+---
+
+---
+
+<section class="hero" id="hero">
+  <div class="container hero__inner">
+    <p class="section-label">Vibroacoustic Therapy</p>
+    <h1 class="hero__title hero__highlight">
+      Let go of your mind.<br />
+      Let go of your body.<br />
+      Find your self.
+    </h1>
+    <p class="hero__subtitle">
+      A fully immersive, therapeutic sound experience designed to promote accelerated entry into deep meditative states.
+    </p>
+    <div class="hero__actions">
+      <a href="#booking" class="btn btn--primary">Book a Session</a>
+      <a href="#what-is-vat" class="btn btn--outline">Learn About VAT</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 1.5rem 6rem;
+  }
+
+  .hero__inner {
+    max-width: 720px;
+  }
+
+  .hero__title {
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .hero__highlight {
+    background: linear-gradient(135deg, var(--color-teal), var(--color-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero__subtitle {
+    font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+    color: var(--color-gray-600);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 52ch;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 7rem 1rem 4rem;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+    }
+
+    .hero__actions .btn {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+</style>

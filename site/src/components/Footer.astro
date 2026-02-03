@@ -1,0 +1,174 @@
+---
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { label: 'Services', href: '#services' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Reviews', href: '#reviews' },
+  { label: 'About', href: '#about' },
+  { label: 'Blog', href: '#blog' },
+  { label: 'What is VAT?', href: '#what-is-vat' },
+];
+---
+
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__logo">Vibe'N <span class="footer__amp">&</span> Thrive</span>
+        <span class="footer__logo-sub">Vibro-Acoustic Therapy</span>
+        <p class="footer__tagline">
+          Healing through sound and vibration.<br />
+          Tigard, Oregon.
+        </p>
+      </div>
+
+      <div class="footer__nav">
+        <h4 class="footer__heading">Navigate</h4>
+        <ul role="list">
+          {navLinks.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer__contact">
+        <h4 class="footer__heading">Contact</h4>
+        <ul role="list">
+          <li>
+            <a href="tel:+12083530597">(208) 353-0597</a>
+          </li>
+          <li>
+            <span>10580 SW McDonald St</span><br />
+            <span>Suites #102 & #202</span><br />
+            <span>Tigard, OR 97224</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__cta">
+        <h4 class="footer__heading">Ready to Feel Better?</h4>
+        <p>Book your first session and experience the difference vibration therapy can make.</p>
+        <a href="#booking" class="btn btn--primary btn--small">Book a Session</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {currentYear} Vibe & Thrive Therapy. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: rgba(15, 26, 30, 0.95);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 5rem 1.5rem 2rem;
+    margin-top: 2rem;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer__logo {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 300;
+    color: white;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .footer__logo-sub {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 2px;
+  }
+
+  .footer__amp {
+    color: var(--color-teal-light);
+  }
+
+  .footer__tagline {
+    margin-top: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .footer__heading {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  .footer__nav ul,
+  .footer__contact ul {
+    list-style: none;
+  }
+
+  .footer__nav li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer__nav a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9375rem;
+    transition: color var(--transition-base);
+  }
+
+  .footer__nav a:hover {
+    color: var(--color-teal-light);
+  }
+
+  .footer__contact li {
+    margin-bottom: 1rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .footer__contact a {
+    color: var(--color-teal-light);
+    font-weight: 600;
+  }
+
+  .footer__cta p {
+    font-size: 0.9375rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (max-width: 900px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

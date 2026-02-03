@@ -1,0 +1,141 @@
+---
+
+---
+
+<section class="about section" id="about">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__content">
+        <p class="section-label">About Us</p>
+        <h2 class="section-title">Healing Through Sound & Vibration</h2>
+        <p class="about__text">
+          Vibe & Thrive was founded with a simple mission: to bring the proven benefits of
+          Vibration Acoustic Therapy to the Portland-Tigard community. We believe that healing
+          doesn't have to be invasive or complicated — sometimes, all your body needs is the
+          right frequency.
+        </p>
+        <p class="about__text">
+          Our team is trained in the latest vibroacoustic techniques, combining clinical
+          knowledge with genuine care for each client's well-being. Whether you're dealing
+          with chronic pain, recovering from injury, or simply looking for a deeper sense of
+          relaxation, we're here to help you find your balance.
+        </p>
+        <p class="about__text">
+          Located in our new Tigard space, we've created an environment designed for comfort
+          and healing — a place where you can truly disconnect, reset, and thrive.
+        </p>
+        <div class="about__stats">
+          <div class="about__stat">
+            <span class="about__stat-num">500+</span>
+            <span class="about__stat-label">Sessions Delivered</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-num">98%</span>
+            <span class="about__stat-label">Client Satisfaction</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-num">5.0</span>
+            <span class="about__stat-label">Google Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about__visual">
+        <div class="about__image-placeholder glass">
+          <div class="about__placeholder-inner">
+            <span class="about__placeholder-icon">~</span>
+            <p>Team / Studio Photo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about__text {
+    font-size: 1.0625rem;
+    color: var(--color-gray-600);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .about__stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-gray-100);
+  }
+
+  .about__stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about__stat-num {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    letter-spacing: -0.02em;
+  }
+
+  .about__stat-label {
+    font-size: 0.8125rem;
+    color: var(--color-gray-400);
+    margin-top: 0.125rem;
+  }
+
+  .about__visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about__image-placeholder {
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 4 / 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about__placeholder-inner {
+    text-align: center;
+    color: var(--color-gray-400);
+    font-size: 0.9375rem;
+  }
+
+  .about__placeholder-icon {
+    display: block;
+    font-size: 3rem;
+    color: var(--color-teal-light);
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .about__stats {
+      gap: 1.5rem;
+    }
+
+    .about__visual {
+      order: -1;
+    }
+
+    .about__image-placeholder {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>
