@@ -13,34 +13,35 @@
     </div>
 
     <div class="booking__grid">
-      <div class="booking__map glass">
-        <a
-          href="https://maps.google.com/?q=10580+SW+McDonald+St+Suite+205+Tigard+OR+97224"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="booking__map-link"
-          aria-label="Open in Google Maps"
-        >
-          <iframe
-            src="https://www.google.com/maps?q=10580+SW+McDonald+St,+Tigard,+OR+97224&output=embed&z=17"
-            width="100%"
-            height="100%"
-            style="border:0; border-radius: 20px; pointer-events: none;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Vibe & Thrive Therapy Location"
-          ></iframe>
-        </a>
-        <div class="booking__address">
-          <p><strong>Vibe & Thrive Therapy</strong></p>
-          <p class="booking__address-line">10580 SW McDonald St, Suite 205, Tigard, OR 97224</p>
+      <div class="booking__left">
+        <div class="booking__map glass">
+          <a
+            href="https://maps.google.com/?q=10580+SW+McDonald+St+Suite+205+Tigard+OR+97224"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="booking__map-link"
+            aria-label="Open in Google Maps"
+          >
+            <iframe
+              src="https://www.google.com/maps?q=10580+SW+McDonald+St,+Tigard,+OR+97224&output=embed&z=17"
+              width="100%"
+              height="100%"
+              style="border:0; border-radius: 16px; pointer-events: none;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Vibe & Thrive Therapy Location"
+            ></iframe>
+          </a>
+          <div class="booking__address">
+            <p><strong>Vibe & Thrive Therapy</strong></p>
+            <p class="booking__address-line">10580 SW McDonald St, Suite 205, Tigard, OR 97224</p>
+          </div>
+        </div>
 
-          <div class="booking__contact">
-            <p class="booking__contact-message">
-              If you have any questions or need specific accommodations, please feel free to reach out. Response times are typically shorter than 24hrs.
-            </p>
-            <p class="booking__contact-name">Carson Goff</p>
+        <div class="booking__contact glass">
+          <p class="booking__contact-name">Carson Goff</p>
+          <div class="booking__contact-info">
             <p class="booking__phone">
               <a href="tel:+12083530597">(208) 353-0597</a>
             </p>
@@ -51,6 +52,9 @@
               <span class="booking__email-copied">Copied!</span>
             </p>
           </div>
+          <p class="booking__contact-message">
+            If you have any questions or need specific accommodations, please feel free to reach out. Response times are typically shorter than 24hrs.
+          </p>
         </div>
       </div>
 
@@ -74,13 +78,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    align-items: start;
+    align-items: stretch;
+  }
+
+  .booking__left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .booking__map {
     padding: 1.25rem;
-    overflow: hidden;
-    border-radius: 24px 24px 16px 16px;
   }
 
   .booking__map-link {
@@ -98,13 +106,13 @@
 
   .booking__map iframe {
     width: 100%;
-    height: 320px;
+    height: 240px;
     border-radius: 16px;
     display: block;
   }
 
   .booking__address {
-    padding: 1.25rem 0.5rem 1rem;
+    padding: 1rem 0.5rem 0;
     font-size: 0.9375rem;
     color: var(--color-gray-600);
     line-height: 1.6;
@@ -120,26 +128,30 @@
   }
 
   .booking__contact {
-    margin-top: 1.25rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--color-gray-100);
-  }
-
-  .booking__contact-message {
-    font-size: 0.875rem;
-    color: var(--color-gray-500);
-    line-height: 1.7;
-    margin-bottom: 1rem;
+    padding: 1.5rem;
   }
 
   .booking__contact-name {
+    font-size: 1.125rem;
     font-weight: 600;
     color: var(--color-gray-900);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.75rem;
   }
 
-  .booking__phone {
-    margin-bottom: 0.5rem;
+  .booking__contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-bottom: 1rem;
+  }
+
+  .booking__contact-message {
+    font-size: 0.8125rem;
+    color: var(--color-gray-500);
+    line-height: 1.6;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-gray-100);
   }
 
   .booking__phone a {
@@ -154,7 +166,6 @@
   }
 
   .booking__email {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -214,6 +225,10 @@
 
     .booking__address-line {
       white-space: normal;
+    }
+
+    .booking__contact {
+      flex: none;
     }
   }
 </style>
