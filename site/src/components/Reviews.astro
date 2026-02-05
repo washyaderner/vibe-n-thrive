@@ -2,9 +2,33 @@
 // Mock reviews — will be replaced with Google Places API data
 const reviews = [
   {
-    author: 'Anonymous',
+    author: 'S.F.',
     rating: 5,
-    text: 'Part therapy, part sound healing, part meditation. I highly recommend Vibe\'N Thrive Vibro Acoustic Therapy.',
+    text: 'Part therapy, part sound healing, part meditation. I\'ve been twice and walked away feeling with reduced stress and a good mood both times. The bass frequencies definitely resonate the body chakras. Def recommend to try this out!',
+    date: '',
+  },
+  {
+    author: 'MaryLisa',
+    rating: 5,
+    text: 'Carson is a very talented sound healer. He is kind and thoughtful, and laying on the therapy table, I experienced some amazing results compounded by the specific vibrational therapy he created. Give this a try! I experienced some vast detoxing (noticeable but still healthy) so I know it worked!',
+    date: '',
+  },
+  {
+    author: 'Isa E.',
+    rating: 5,
+    text: 'I highly recommend Vibe\'N Thrive Vibro Acoustic Therapy. A beautiful head to toe Somatic Healing Experience; Carson provides a unique, tailored to you sound and vibrational session. It was very beneficial and transformative. I came away both relaxed and clearer. My nervous system calmed and I even noticed that my dreams became more vivid and vibrant.',
+    date: '',
+  },
+  {
+    author: 'Evan',
+    rating: 5,
+    text: 'Super unique experience! Would definitely recommend to anyone looking to better their wellbeing via a natural acoustic process. Perfect for stress and anxiety relief.',
+    date: '',
+  },
+  {
+    author: 'Meli O.',
+    rating: 5,
+    text: 'Really unique and professional experience! Highly recommend to anyone looking for alternative medicine to heal your mind/body :)',
     date: '',
   },
   {
@@ -25,10 +49,10 @@ function stars(rating: number) {
   return Array.from({ length: 5 }, (_, i) => i < rating ? 'filled' : 'empty');
 }
 
-// Sort reviews: longest goes to the right column, shorter ones stack on the left
-const sorted = [...reviews].sort((a, b) => a.text.length - b.text.length);
-const shortReviews = sorted.slice(0, -1);
-const longReview = sorted[sorted.length - 1];
+// Split reviews evenly between two columns
+const midpoint = Math.ceil(reviews.length / 2);
+const leftColumn = reviews.slice(0, midpoint);
+const rightColumn = reviews.slice(midpoint);
 ---
 
 <section class="reviews section" id="reviews">
@@ -42,8 +66,8 @@ const longReview = sorted[sorted.length - 1];
     </div>
 
     <div class="reviews__grid">
-      <div class="reviews__col reviews__col--short">
-        {shortReviews.map(review => (
+      <div class="reviews__col">
+        {leftColumn.map(review => (
           <div class="reviews__card liquid-glass">
             <div class="reviews__stars">
               {stars(review.rating).map(state => (
@@ -58,19 +82,21 @@ const longReview = sorted[sorted.length - 1];
           </div>
         ))}
       </div>
-      <div class="reviews__col reviews__col--long">
-        <div class="reviews__card liquid-glass">
-          <div class="reviews__stars">
-            {stars(longReview.rating).map(state => (
-              <span class={`reviews__star reviews__star--${state}`}>&#9733;</span>
-            ))}
+      <div class="reviews__col">
+        {rightColumn.map(review => (
+          <div class="reviews__card liquid-glass">
+            <div class="reviews__stars">
+              {stars(review.rating).map(state => (
+                <span class={`reviews__star reviews__star--${state}`}>&#9733;</span>
+              ))}
+            </div>
+            <p class="reviews__text">{review.text}</p>
+            <div class="reviews__meta">
+              <span class="reviews__author">{review.author}</span>
+              <span class="reviews__date">{review.date}</span>
+            </div>
           </div>
-          <p class="reviews__text">{longReview.text}</p>
-          <div class="reviews__meta">
-            <span class="reviews__author">{longReview.author}</span>
-            <span class="reviews__date">{longReview.date}</span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </div>
@@ -85,18 +111,10 @@ const longReview = sorted[sorted.length - 1];
     padding: 1rem 0 2rem;
   }
 
-  .reviews__col--short {
+  .reviews__col {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-  }
-
-  .reviews__col--long {
-    display: flex;
-  }
-
-  .reviews__col--long .reviews__card {
-    flex: 1;
   }
 
   .reviews__card {
@@ -153,10 +171,6 @@ const longReview = sorted[sorted.length - 1];
   @media (max-width: 768px) {
     .reviews__grid {
       grid-template-columns: 1fr;
-    }
-
-    .reviews__col--long {
-      display: block;
     }
   }
 </style>
