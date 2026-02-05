@@ -22,3 +22,6 @@ node_modules/
 
 # IDE
 .idea/
+
+# Client files
+Carson Files/
