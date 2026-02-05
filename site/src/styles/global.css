@@ -64,6 +64,26 @@ body {
   min-height: 100vh;
 }
 
+/* Mobile gradient fix - background-attachment: fixed doesn't work on mobile browsers */
+@media (max-width: 1024px) {
+  body {
+    background-attachment: scroll;
+    background: var(--color-white);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, var(--color-white) 0%, #e0f7f5 40%, #bae6e0 70%, #7dd3c8 100%);
+    pointer-events: none;
+  }
+}
+
 /* --- Typography --- */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
