@@ -1,4 +1,13 @@
 ---
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/cormorant-garamond/300.css';
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/600.css';
+import '@fontsource/cormorant-garamond/300-italic.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -34,10 +43,7 @@ const {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL('/images/og-image.png', Astro.site)} />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" type="image/webp" href="/images/hero-bg.webp" />
 
     <title>{title}</title>
   </head>
