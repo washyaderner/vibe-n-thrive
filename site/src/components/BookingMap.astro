@@ -277,30 +277,34 @@
     observer.observe(mapContainer);
   }
 
-  // Calendly lazy-load inline embed
+  // Calendly: eagerly load CSS + JS, init widget on scroll
   const calendlyContainer = document.getElementById('calendly-inline');
 
   if (calendlyContainer) {
+    // Load CSS + JS immediately so they're cached by scroll time
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://assets.calendly.com/assets/external/widget.css';
+    document.head.appendChild(link);
+
+    const calendlyReady = new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.onload = resolve;
+      document.head.appendChild(script);
+    });
+
+    // Only init the widget when section is near viewport
     const calObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Load Calendly CSS
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = 'https://assets.calendly.com/assets/external/widget.css';
-          document.head.appendChild(link);
-
-          // Load Calendly JS and init inline widget
-          const script = document.createElement('script');
-          script.src = 'https://assets.calendly.com/assets/external/widget.js';
-          script.onload = () => {
+          calendlyReady.then(() => {
             window.Calendly.initInlineWidget({
               url: 'https://calendly.com/vibenthrivevibroacoustics/60-min-session?hide_event_type_details=1&hide_gdpr_banner=1',
               parentElement: calendlyContainer,
             });
-          };
-          document.head.appendChild(script);
-
+          });
           calObserver.disconnect();
         }
       });
