@@ -1,4 +1,13 @@
 ---
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
+import '@fontsource/inter/latin-700.css';
+import '@fontsource/cormorant-garamond/latin-300.css';
+import '@fontsource/cormorant-garamond/latin-400.css';
+import '@fontsource/cormorant-garamond/latin-600.css';
+import interLatinWoff2 from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+
 interface Props {
   title: string;
   description?: string;
@@ -34,10 +43,11 @@ const {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL('/images/og-image.png', Astro.site)} />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="font" type="font/woff2" href={interLatinWoff2} crossorigin />
+
+    <link rel="preload" as="image" type="image/webp"
+      imagesrcset="/images/hero-bg-640.webp 640w, /images/hero-bg-1024.webp 1024w, /images/hero-bg.webp 3360w"
+      imagesizes="100vw" />
 
     <title>{title}</title>
   </head>

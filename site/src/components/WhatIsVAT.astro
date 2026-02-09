@@ -53,12 +53,21 @@
       </div>
 
       <div class="vat__visual">
-        <img
-          src="/images/Bed-transparent-v2-PQU09DIg.gif"
-          alt="Illustration of a person lying on a vibroacoustic therapy bed with sound wave vibrations"
-          class="vat__bed-image"
-          loading="lazy"
-        />
+        <picture>
+          <source
+            srcset="/images/bed-therapy-480.webp 480w, /images/bed-therapy-768.webp 768w, /images/bed-therapy.webp 1024w"
+            sizes="(max-width: 900px) 100vw, 40vw"
+            type="image/webp"
+          />
+          <img
+            src="/images/Bed-transparent-v2-PQU09DIg.gif"
+            alt="Illustration of a person lying on a vibroacoustic therapy bed with sound wave vibrations"
+            class="vat__bed-image"
+            loading="lazy"
+            width="1024"
+            height="838"
+          />
+        </picture>
       </div>
     </div>
 
