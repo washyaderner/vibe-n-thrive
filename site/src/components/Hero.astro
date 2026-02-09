@@ -5,8 +5,12 @@
 <section class="hero" id="hero">
   <div class="hero__bg">
     <picture>
-      <source srcset="/images/hero-bg.webp" type="image/webp" />
-      <img src="/images/hero-bg.jpg" alt="" class="hero__bg-img" fetchpriority="high" />
+      <source
+        srcset="/images/hero-bg-640.webp 640w, /images/hero-bg-1024.webp 1024w, /images/hero-bg.webp 3360w"
+        sizes="100vw"
+        type="image/webp"
+      />
+      <img src="/images/hero-bg.jpg" alt="" class="hero__bg-img" fetchpriority="high" width="3360" height="1440" />
     </picture>
     <div class="hero__overlay"></div>
   </div>
@@ -18,7 +22,7 @@
         Let go of your body.<br />
         Find your self.
       </h1>
-      <img src="/images/logo.svg" alt="Vibe'N Thrive logo" class="hero__logo" />
+      <img src="/images/logo.svg" alt="Vibe'N Thrive logo" class="hero__logo" width="431" height="431" />
     </div>
     <p class="hero__subtitle">
       A fully immersive, therapeutic sound experience designed to promote accelerated entry into deep meditative states.
@@ -133,6 +137,11 @@
   }
 
   @media (max-width: 768px) {
+    .hero__overlay {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
     .hero__row {
       flex-direction: column-reverse;
       text-align: center;

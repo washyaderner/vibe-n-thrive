@@ -309,4 +309,31 @@ img {
     padding: 0.75rem 1.5rem;
     font-size: 0.9375rem;
   }
+
+  /* --- Mobile Performance: Remove expensive GPU effects --- */
+  body::before {
+    position: absolute;
+  }
+
+  .glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .glass--strong {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .liquid-glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.88);
+  }
+
+  .liquid-glass::before {
+    display: none;
+  }
 }
