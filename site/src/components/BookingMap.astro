@@ -67,11 +67,7 @@
         <p class="booking__calendar-desc">
           Select a time that works for you. Your first session includes a brief consultation.
         </p>
-        <div class="booking__calendly-wrap">
-          <button type="button" class="booking__book-btn btn btn--primary" id="calendly-trigger">
-            Book Now
-          </button>
-        </div>
+        <div class="booking__calendly-wrap" id="calendly-inline"></div>
       </div>
     </div>
   </div>
@@ -82,7 +78,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   .booking__left {
@@ -223,6 +219,8 @@
 
   .booking__calendar {
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .booking__calendar-title {
@@ -238,15 +236,12 @@
   .booking__calendly-wrap {
     border-radius: 16px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 200px;
+    flex: 1;
   }
 
-  .booking__book-btn {
-    font-size: 1.25rem;
-    padding: 1rem 3rem;
+  .booking__calendly-wrap iframe {
+    height: 100% !important;
+    min-height: 100% !important;
   }
 
   @media (max-width: 900px) {
@@ -282,39 +277,37 @@
     observer.observe(mapContainer);
   }
 
-  // Calendly lazy-load popup
-  const calendlyBtn = document.getElementById('calendly-trigger');
-  let calendlyLoaded = false;
+  // Calendly lazy-load inline embed
+  const calendlyContainer = document.getElementById('calendly-inline');
 
-  function openCalendly() {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/vibenthrivevibroacoustics/60-min-session?hide_event_type_details=1&hide_gdpr_banner=1'
+  if (calendlyContainer) {
+    const calObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Load Calendly CSS
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://assets.calendly.com/assets/external/widget.css';
+          document.head.appendChild(link);
+
+          // Load Calendly JS and init inline widget
+          const script = document.createElement('script');
+          script.src = 'https://assets.calendly.com/assets/external/widget.js';
+          script.onload = () => {
+            window.Calendly.initInlineWidget({
+              url: 'https://calendly.com/vibenthrivevibroacoustics/60-min-session?hide_event_type_details=1&hide_gdpr_banner=1',
+              parentElement: calendlyContainer,
+            });
+          };
+          document.head.appendChild(script);
+
+          calObserver.disconnect();
+        }
       });
-    }
+    }, { rootMargin: '800px' });
+
+    calObserver.observe(calendlyContainer);
   }
-
-  calendlyBtn?.addEventListener('click', () => {
-    if (calendlyLoaded) {
-      openCalendly();
-      return;
-    }
-
-    // Load Calendly CSS
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://assets.calendly.com/assets/external/widget.css';
-    document.head.appendChild(link);
-
-    // Load Calendly JS
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.onload = () => {
-      calendlyLoaded = true;
-      openCalendly();
-    };
-    document.head.appendChild(script);
-  });
 
   const emailBtn = document.querySelector('.booking__email-btn');
   const copiedMsg = document.querySelector('.booking__email-copied');
