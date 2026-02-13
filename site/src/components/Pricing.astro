@@ -95,6 +95,23 @@ const tiers = [
       ))}
     </div>
 
+    <div class="pricing__events">
+      <h3 class="pricing__events-title">Event Rates</h3>
+      <p class="pricing__events-subtitle">Bring vibroacoustic therapy to your group event, retreat or wellness gathering.</p>
+      <div class="pricing__events-options">
+        <div class="pricing__events-option">
+          <span class="pricing__events-amount">$350</span>
+          <span class="pricing__events-duration">5 hours</span>
+        </div>
+        <span class="pricing__events-divider" aria-hidden="true"></span>
+        <div class="pricing__events-option">
+          <span class="pricing__events-amount">$500</span>
+          <span class="pricing__events-duration">8 hours</span>
+        </div>
+      </div>
+      <a href="mailto:vibenthrivevibroacoustics@gmail.com" class="btn btn--primary">Inquire About Events</a>
+    </div>
+
   </div>
 </section>
 
@@ -214,6 +231,65 @@ const tiers = [
     width: 100%;
     justify-content: center;
     margin-top: auto;
+  }
+
+  .pricing__events {
+    margin-top: 2.5rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .pricing__events-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pricing__events-subtitle {
+    font-size: 1.1875rem;
+    color: var(--color-gray-500);
+    margin-bottom: 1.75rem;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .pricing__events-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .pricing__events-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .pricing__events-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    letter-spacing: -0.02em;
+  }
+
+  .pricing__events-duration {
+    font-size: 0.875rem;
+    color: var(--color-gray-400);
+    font-weight: 500;
+  }
+
+  .pricing__events-divider {
+    width: 1px;
+    height: 3rem;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .pricing__events .btn {
+    min-width: 220px;
   }
 
   @media (max-width: 1100px) {
