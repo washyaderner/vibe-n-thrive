@@ -1,0 +1,18 @@
+{
+  "source": "quantum mandala.png",
+  "output": "mandala_extracted.png",
+  "method": "smart",
+  "crop": {
+    "x": 924,
+    "y": 0,
+    "width": 1461,
+    "height": 1373,
+    "original_width": 3360,
+    "original_height": 1440,
+    "cropped": true
+  },
+  "size": {
+    "width": 1461,
+    "height": 1373
+  }
+}
