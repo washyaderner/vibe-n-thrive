@@ -138,9 +138,7 @@ const tiers = [
               <option value="5 hours ($350)">5 hours ($350)</option>
               <option value="8 hours ($500)">8 hours ($500)</option>
               <option value="Not sure yet">Not sure yet</option>
-              <option value="custom">Other (enter below)</option>
             </select>
-            <input type="text" id="event-hours-custom" name="hours_custom" placeholder="e.g. 3 hours, full day, etc." hidden />
           </div>
           <div class="events-form__field events-form__field--full">
             <label for="event-description">Event Description <span class="events-form__required">*</span></label>
@@ -393,10 +391,6 @@ const tiers = [
     min-height: 100px;
   }
 
-  #event-hours-custom {
-    margin-top: 0.5rem;
-  }
-
   .events-form__submit {
     margin-top: 1.25rem;
     width: 100%;
@@ -459,15 +453,6 @@ const tiers = [
     if (!isOpen) {
       form.querySelector('input')?.focus();
     }
-  });
-
-  const hoursSelect = document.getElementById('event-hours');
-  const hoursCustom = document.getElementById('event-hours-custom');
-
-  hoursSelect?.addEventListener('change', () => {
-    const isCustom = hoursSelect.value === 'custom';
-    hoursCustom.hidden = !isCustom;
-    if (isCustom) hoursCustom.focus();
   });
 
   form?.addEventListener('submit', async (e) => {
