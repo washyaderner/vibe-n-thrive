@@ -26,3 +26,6 @@ node_modules/
 # Client files
 Carson Files/
 .vercel
+
+# Claude Code session-local settings (machine-specific paths, do not share)
+.claude/settings.local.json
