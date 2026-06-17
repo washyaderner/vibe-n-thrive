@@ -64,7 +64,7 @@
 
 ## NOT in v1 (Scope Constraints)
 
-- Custom domain
+- Custom domain (RESOLVED 2026-06-16: live at https://www.vibenthrivetherapy.com, served by Vercel from this Astro build; apex redirects to www)
 - Actual video embed (placeholder only)
 - Multi-location support
 - Admin auth/dashboard
@@ -110,11 +110,12 @@
 | Date | Update |
 |------|--------|
 | 2026-02-03 | Initial setup. Parsed preamble, resolved open questions, chose Astro stack. |
+| 2026-06-16 | Added "Lymphatic Drainage" section under Our Therapies (Carson copy). Moved location Tigard -> Beaverton (6700 SW 105th Ave, Suite 217, Beaverton, OR 97008) site-wide incl. map embed. Added missing OG share image (1200x630, public/images/og-image.png). Custom domain confirmed live: www.vibenthrivetherapy.com. e2e suite rewritten, 15/15 across Chromium/Firefox/WebKit. |
 
 ---
 
 ## Lessons Learned
 
-- vibenthrivetherapy.com is fully JS-rendered SPA — httpx/html2text returns empty content. Would need Playwright for scraping.
+- vibenthrivetherapy.com now serves THIS Astro build (static, server-rendered HTML) on Vercel, live as of 2026-06-16. (Historical note: the prior site at this domain was a fully JS-rendered SPA that returned empty content to httpx/html2text and needed Playwright to scrape. That no longer applies.)
 
 ---
