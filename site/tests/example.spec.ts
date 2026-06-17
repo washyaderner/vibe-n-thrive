@@ -38,9 +38,15 @@ test.describe('Lymphatic Drainage section', () => {
     await expect(section.getByText('After VAT')).toBeVisible();
   });
 
-  test('is linked from the nav', async ({ page }) => {
+  test('appears below the Our Therapies (services) section', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('.nav__links a[href="#lymphatic-drainage"]')).toHaveCount(1);
+    const servicesY = await page.locator('#services').evaluate(
+      (el) => el.getBoundingClientRect().top + window.scrollY,
+    );
+    const lymphY = await page.locator('#lymphatic-drainage').evaluate(
+      (el) => el.getBoundingClientRect().top + window.scrollY,
+    );
+    expect(lymphY).toBeGreaterThan(servicesY);
   });
 });
 
