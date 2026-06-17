@@ -1,47 +1,56 @@
 import { test, expect } from '@playwright/test';
 
 /**
- * Example E2E test file
- * 
- * These tests verify the basic functionality of the site.
- * Add more tests as you build out features.
+ * E2E tests for the Vibe & Thrive homepage.
+ * Covers the 2026-06 update: lymphatic drainage section + Beaverton address move.
  */
 
 test.describe('Homepage', () => {
-  test('should load successfully', async ({ page }) => {
-    // Navigate to homepage
+  test('loads with the correct title', async ({ page }) => {
     await page.goto('/');
-
-    // Verify page loaded (check for any content)
-    await expect(page.locator('body')).toBeVisible();
+    await expect(page).toHaveTitle(/Vibe & Thrive Therapy/);
+    await expect(page).toHaveTitle(/Beaverton, Oregon/);
   });
 
-  test('should have correct title', async ({ page }) => {
-    await page.goto('/');
-
-    // Check the page title - update this to match your actual title
-    await expect(page).toHaveTitle(/Astro/);
-  });
-});
-
-test.describe('Navigation', () => {
-  test('should be accessible', async ({ page }) => {
-    await page.goto('/');
-
-    // Basic accessibility check - no console errors
+  test('renders without first-party console errors', async ({ page }) => {
     const errors: string[] = [];
     page.on('console', (msg) => {
-      if (msg.type() === 'error') {
+      // Ignore third-party (Calendly/Datadog) noise; only fail on first-party errors.
+      if (msg.type() === 'error' && !msg.location().url.includes('calendly.com')) {
         errors.push(msg.text());
       }
     });
-
-    // Wait a moment for any errors to appear
+    await page.goto('/');
     await page.waitForTimeout(1000);
+    expect(errors).toEqual([]);
+  });
+});
 
-    // Log errors for debugging (won't fail test, just informational)
-    if (errors.length > 0) {
-      console.log('Console errors found:', errors);
-    }
+test.describe('Lymphatic Drainage section', () => {
+  test('exists with heading, two phases, and three benefits', async ({ page }) => {
+    await page.goto('/');
+    const section = page.locator('#lymphatic-drainage');
+    await expect(section).toHaveCount(1);
+    await expect(section.getByRole('heading', { name: 'Lymphatic Drainage' })).toBeVisible();
+    await expect(section.locator('.lymph__phase')).toHaveCount(2);
+    await expect(section.locator('.lymph__benefit')).toHaveCount(3);
+    await expect(section.getByText('Before VAT')).toBeVisible();
+    await expect(section.getByText('After VAT')).toBeVisible();
+  });
+
+  test('is linked from the nav', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.nav__links a[href="#lymphatic-drainage"]')).toHaveCount(1);
+  });
+});
+
+test.describe('Beaverton address', () => {
+  test('shows the new address and no longer references Tigard', async ({ page }) => {
+    await page.goto('/');
+    const body = page.locator('body');
+    await expect(body).toContainText('6700 SW 105th Ave, Suite 217, Beaverton, OR 97008');
+    await expect(page.locator('.footer__contact')).toContainText('Beaverton, OR 97008');
+    await expect(body).not.toContainText('Tigard');
+    await expect(body).not.toContainText('97224');
   });
 });

@@ -1,0 +1,193 @@
+---
+const benefits = [
+  {
+    title: 'Cellular Resonance',
+    description: 'Penetrating sound waves target deep tissues, which accelerates recovery and flushes metabolic waste.',
+    icon: 'resonance',
+  },
+  {
+    title: 'Pain & Swelling Reduction',
+    description: 'The combination soothes muscles, modulates pain pathways, and decreases inflammation from conditions like lymphedema.',
+    icon: 'reduction',
+  },
+  {
+    title: 'Stress Down-Regulation',
+    description: 'The auditory and vibrational frequencies reduce cortisol levels and encourage the brain to enter calming delta and theta wave states.',
+    icon: 'calm',
+  },
+];
+---
+
+<section class="lymph section" id="lymphatic-drainage">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Now Offering</p>
+      <h2 class="section-title">Lymphatic Drainage</h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">
+        Vibroacoustic therapy enhances lymphatic drainage by using low-frequency sound waves, between 30
+        and 120 Hz, to gently vibrate the body. This resonant kinetic energy acts as a passive micro-pump,
+        stimulating lymph vessels, boosting circulation, and pushing metabolic waste toward the lymph nodes
+        without strenuous physical exertion.
+      </p>
+    </div>
+
+    <div class="lymph__together">
+      <h3 class="lymph__together-title">How They Work Together</h3>
+      <p class="lymph__together-intro">
+        Combining these therapies delivers compounding results for relaxation and fluid management.
+      </p>
+      <div class="lymph__phases">
+        <div class="lymph__phase glass">
+          <span class="lymph__phase-tag">Before VAT</span>
+          <p>
+            Lying on a vibroacoustic sound bed softens muscle tension and triggers a parasympathetic
+            (rest-and-digest) state, preparing your tissues for deeper lymphatic release.
+          </p>
+        </div>
+        <div class="lymph__phase glass">
+          <span class="lymph__phase-tag">After VAT</span>
+          <p>
+            Continuing with lymphatic drainage helps flush out the cellular waste and inflammation that the
+            sound vibrations previously mobilized.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lymph__benefits">
+      <h3 class="lymph__benefits-title text-center">Key Benefits</h3>
+      <div class="lymph__benefit-grid">
+        {benefits.map((benefit) => (
+          <div class="lymph__benefit glass">
+            <span class="lymph__benefit-icon">
+              {benefit.icon === 'resonance' && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.48M7.76 16.24a6 6 0 0 1 0-8.48M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"></path></svg>
+              )}
+              {benefit.icon === 'reduction' && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
+              )}
+              {benefit.icon === 'calm' && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+              )}
+            </span>
+            <h4 class="lymph__benefit-title">{benefit.title}</h4>
+            <p class="lymph__benefit-desc">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lymph__together {
+    margin-top: 1rem;
+  }
+
+  .lymph__together-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .lymph__together-intro {
+    font-size: 1.0625rem;
+    color: var(--color-gray-600);
+    line-height: 1.7;
+    text-align: center;
+    max-width: 60ch;
+    margin: 0 auto 2.5rem;
+  }
+
+  .lymph__phases {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .lymph__phase {
+    padding: 2rem;
+    position: relative;
+  }
+
+  .lymph__phase-tag {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-teal);
+    background: rgba(13, 148, 136, 0.08);
+    padding: 0.375rem 0.875rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .lymph__phase p {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.7;
+    max-width: none;
+  }
+
+  .lymph__benefits {
+    margin-top: 4rem;
+  }
+
+  .lymph__benefits-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .lymph__benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .lymph__benefit {
+    padding: 2rem;
+    transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  }
+
+  .lymph__benefit:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.08),
+      0 0 0 2px rgba(13, 148, 136, 0.15);
+  }
+
+  .lymph__benefit-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--color-teal-light), var(--color-teal));
+    color: var(--color-white);
+    margin-bottom: 1.25rem;
+  }
+
+  .lymph__benefit-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .lymph__benefit-desc {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.7;
+    max-width: none;
+  }
+
+  @media (max-width: 900px) {
+    .lymph__benefit-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .lymph__phases {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
