@@ -3,11 +3,11 @@ const tiers = [
   {
     name: 'Drop-In Alignment',
     sessions: null,
-    price: '$70 – $100',
+    price: '$70 to $100',
     perSession: 'sliding scale',
     description: 'A one-time reset session to ground, reconnect and bring your system back into harmony.',
     features: [
-      'Single session — no commitment',
+      'Single session, no commitment',
       'Personalized frequency calibration',
       'Post-session wellness guidance',
     ],
@@ -142,7 +142,7 @@ const tiers = [
           </div>
           <div class="events-form__field events-form__field--full">
             <label for="event-description">Event Description <span class="events-form__required">*</span></label>
-            <textarea id="event-description" name="description" rows="4" required placeholder="Tell us about your event — type, expected attendance, date, location, etc."></textarea>
+            <textarea id="event-description" name="description" rows="4" required placeholder="Tell us about your event: type, expected attendance, date, location, etc."></textarea>
           </div>
         </div>
         <button type="submit" class="btn btn--primary events-form__submit">Send Inquiry</button>
@@ -472,11 +472,11 @@ const tiers = [
         toggle.hidden = true;
         success.hidden = false;
       } else {
-        submitBtn.textContent = 'Something went wrong — try again';
+        submitBtn.textContent = 'Something went wrong. Try again';
         submitBtn.disabled = false;
       }
     } catch {
-      submitBtn.textContent = 'Something went wrong — try again';
+      submitBtn.textContent = 'Something went wrong. Try again';
       submitBtn.disabled = false;
     }
   });
