@@ -49,3 +49,8 @@ fix: add missing OG share image + correct stale project_state notes
 **Signal:** Strong trust + a direct calibration: "you're smarter than you give yourself credit for, but you're too cautious. if you find things that need correcting, DO IT." I had flagged the OG image + stale docs instead of fixing them.
 **Friction:** First nav breakpoint calc (1100px) was wrong, measured widths in an already-shrunk state; re-measured at a wide viewport and verified the seam empirically.
 **Carries forward:** Optional (offered, not done): LocalBusiness JSON-LD for the Beaverton move + a "Book a Session" CTA in the lymphatic section. Carson-side: check his Calendly event description for the old Tigard location. Global MEMORY.md ~26KB (over 24.4KB soft limit) + surfacer flags 28 orphan memory files -> /memory-gc pass. Phara user.md (15d old) missing vibe-n-thrive as a client.
+
+## 2026-06-19 13:09 | 6f59353
+
+chore: WIP sync snapshot 2026-06-19
+
