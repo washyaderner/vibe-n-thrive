@@ -9,5 +9,6 @@
       "Bash(git fetch:*)",
       "Bash(git merge:*)"
     ]
-  }
+  },
+  "outputStyle": "ELI5"
 }
