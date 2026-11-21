@@ -8,38 +8,24 @@
       <p class="section-label">Visit Us</p>
       <h2 class="section-title">Location & Booking</h2>
       <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">
-        We're located in Beaverton, Oregon. Book your session online. It only takes a minute.
+        We're located in Portland, Oregon. Book your session online. It only takes a minute.
       </p>
     </div>
 
     <div class="booking__grid">
       <div class="booking__left">
-        <div class="booking__map glass">
-          <a
-            href="https://maps.google.com/?q=6700+SW+105th+Ave+Suite+217+Beaverton+OR+97008"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="booking__map-link"
-            aria-label="Open in Google Maps"
-          >
-            <div class="booking__map-placeholder" aria-hidden="true">
+        <div class="booking__where glass">
+          <div class="booking__area">
+            <div class="booking__area-pin" aria-hidden="true">
+              <span class="booking__area-ring"></span>
+              <span class="booking__area-ring booking__area-ring--2"></span>
+              <span class="booking__area-ring booking__area-ring--3"></span>
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <span>Loading map...</span>
             </div>
-            <iframe
-              data-src="https://www.google.com/maps?q=6700+SW+105th+Ave,+Suite+217,+Beaverton,+OR+97008&output=embed&z=17"
-              width="100%"
-              height="100%"
-              style="border:0; border-radius: 16px; pointer-events: none;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Vibe & Thrive Therapy Location"
-            ></iframe>
-          </a>
+            <p class="booking__area-city">Portland, Oregon</p>
+          </div>
           <div class="booking__address">
-            <p><strong>Vibe & Thrive Therapy</strong></p>
-            <p class="booking__address-line">6700 SW 105th Ave, Suite 217, Beaverton, OR 97008</p>
+            <p><strong>Vibe'N Thrive Vibro-Acoustic Therapy</strong></p>
           </div>
         </div>
 
@@ -87,47 +73,107 @@
     gap: 1.5rem;
   }
 
-  .booking__map {
+  .booking__where {
     padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
-  .booking__map-link {
-    display: block;
+  /* Service-area panel: at least the map's old footprint, and it stretches to match the calendar */
+  .booking__area {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 380px;
     border-radius: 16px;
     overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .booking__map-link:hover {
-    transform: scale(1.01);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .booking__map iframe {
-    width: 100%;
-    height: 380px;
-    border-radius: 16px;
-    display: block;
-  }
-
-  .booking__map-placeholder {
-    width: 100%;
-    height: 380px;
-    border-radius: 16px;
     background: linear-gradient(135deg, #e0f7f5 0%, #bae6e0 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 1.25rem;
     color: var(--color-teal);
-    font-size: 0.875rem;
-    font-weight: 500;
   }
 
-  .booking__map-placeholder.loaded {
-    display: none;
+  .booking__area-pin {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+  }
+
+  .booking__area-pin svg {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Soft rings that ripple out from the pin, like sound moving through the table */
+  .booking__area-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    border: 1px solid rgba(13, 148, 136, 0.3);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+    animation: booking-ring 4.5s ease-out infinite;
+  }
+
+  .booking__area-ring--2 {
+    animation-delay: 1.5s;
+  }
+
+  .booking__area-ring--3 {
+    animation-delay: 3s;
+  }
+
+  @keyframes booking-ring {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.4);
+    }
+    20% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(3.2);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .booking__area-ring {
+      animation: none;
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .booking__area-ring--2 {
+      opacity: 0.35;
+      transform: translate(-50%, -50%) scale(1.8);
+    }
+
+    .booking__area-ring--3 {
+      opacity: 0.2;
+      transform: translate(-50%, -50%) scale(2.6);
+    }
+  }
+
+  .booking__area-city {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gray-900);
+    text-align: center;
   }
 
   .booking__address {
@@ -140,10 +186,6 @@
   .booking__address strong {
     color: var(--color-gray-900);
     font-size: 1rem;
-  }
-
-  .booking__address-line {
-    white-space: nowrap;
   }
 
   .booking__contact {
@@ -237,6 +279,7 @@
     border-radius: 16px;
     overflow: hidden;
     flex: 1;
+    min-height: 600px;
   }
 
   .booking__calendly-wrap iframe {
@@ -249,20 +292,16 @@
       grid-template-columns: 1fr;
     }
 
-    .booking__address-line {
-      white-space: normal;
-    }
-
     .booking__calendly-wrap {
       min-height: 660px;
     }
 
-    .booking__map iframe {
-      height: 280px;
+    .booking__area {
+      min-height: 280px;
     }
 
-    .booking__map-placeholder {
-      height: 280px;
+    .booking__area-city {
+      font-size: 1.5rem;
     }
 
     .booking__email-btn {
@@ -270,30 +309,15 @@
       word-break: break-all;
     }
   }
+
+  @media (max-width: 400px) {
+    .booking__area-city {
+      font-size: 1.25rem;
+    }
+  }
 </style>
 
 <script>
-  // Lazy-load Google Maps
-  const mapContainer = document.querySelector('.booking__map');
-  const mapIframe = mapContainer?.querySelector('iframe[data-src]');
-  const mapPlaceholder = mapContainer?.querySelector('.booking__map-placeholder');
-
-  if (mapIframe && mapContainer) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          mapIframe.src = mapIframe.dataset.src;
-          mapIframe.addEventListener('load', () => {
-            mapPlaceholder?.classList.add('loaded');
-          }, { once: true });
-          observer.disconnect();
-        }
-      });
-    }, { rootMargin: '200px' });
-
-    observer.observe(mapContainer);
-  }
-
   // Calendly: eagerly load CSS + JS, init widget on scroll
   const calendlyContainer = document.getElementById('calendly-inline');
 
