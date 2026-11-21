@@ -15,7 +15,7 @@ interface Props {
 
 const {
   title,
-  description = 'Experience deep relief through Vibroacoustic Therapy. Vibe & Thrive offers clinically-backed VAT sessions for pain relief, stress reduction, and recovery in Beaverton, Oregon.'
+  description = "Experience deep relief through Vibroacoustic Therapy. Vibe'N Thrive Vibro-Acoustic Therapy offers clinically-backed VAT sessions for pain relief, stress reduction, and recovery in Portland, Oregon."
 } = Astro.props;
 ---
 
@@ -36,14 +36,14 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content={Astro.url} />
-    <meta property="og:site_name" content="Vibe & Thrive Therapy" />
-    <meta property="og:image" content={new URL('/images/og-image.png', Astro.site)} />
+    <meta property="og:site_name" content="Vibe'N Thrive Vibro-Acoustic Therapy" />
+    <meta property="og:image" content={new URL('/images/og-image.png?v=2', Astro.site)} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL('/images/og-image.png', Astro.site)} />
+    <meta name="twitter:image" content={new URL('/images/og-image.png?v=2', Astro.site)} />
 
     <link rel="preload" as="font" type="font/woff2" href={interLatinWoff2} crossorigin />
 

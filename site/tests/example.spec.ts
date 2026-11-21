@@ -1,15 +1,15 @@
 import { test, expect } from '@playwright/test';
 
 /**
- * E2E tests for the Vibe & Thrive homepage.
- * Covers the 2026-06 update: lymphatic drainage section + Beaverton address move.
+ * E2E tests for the Vibe'N Thrive Vibro-Acoustic Therapy homepage.
+ * Covers the 2026-06 lymphatic drainage section and the 2026-11 name change + address removal.
  */
 
 test.describe('Homepage', () => {
   test('loads with the correct title', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveTitle(/Vibe & Thrive Therapy/);
-    await expect(page).toHaveTitle(/Beaverton, Oregon/);
+    await expect(page).toHaveTitle(/Vibe'N Thrive Vibro-Acoustic Therapy/);
+    await expect(page).toHaveTitle(/Portland, Oregon/);
   });
 
   test('renders without first-party console errors', async ({ page }) => {
@@ -50,13 +50,25 @@ test.describe('Lymphatic Drainage section', () => {
   });
 });
 
-test.describe('Beaverton address', () => {
-  test('shows the new address and no longer references Tigard', async ({ page }) => {
+test.describe('Location (2026-11: Portland only, no street address or map)', () => {
+  test('says Portland and shows no street address, map, or old locations', async ({ page }) => {
     await page.goto('/');
     const body = page.locator('body');
-    await expect(body).toContainText('6700 SW 105th Ave, Suite 217, Beaverton, OR 97008');
-    await expect(page.locator('.footer__contact')).toContainText('Beaverton, OR 97008');
-    await expect(body).not.toContainText('Tigard');
-    await expect(body).not.toContainText('97224');
+    await expect(page.locator('.booking__area-city')).toHaveText('Portland, Oregon');
+    await expect(page.locator('.footer__contact')).toContainText('Portland, Oregon');
+    for (const old of ['Beaverton', 'Tigard', 'Powell', 'McDonald', '105th', 'Suite', '97008', '97224', '97206']) {
+      await expect(body).not.toContainText(old);
+    }
+    await expect(page.locator('iframe[src*="google.com/maps"], iframe[data-src*="google.com/maps"]')).toHaveCount(0);
+    await expect(page.locator('a[href*="maps.google"]')).toHaveCount(0);
+  });
+
+  test('uses the new business name in the header, footer, and Open Graph', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.nav__logo')).toContainText("Vibe'N Thrive");
+    await expect(page.locator('.nav__logo')).toContainText('Vibro-Acoustic Therapy');
+    await expect(page.locator('.footer__bottom')).toContainText("Vibe'N Thrive Vibro-Acoustic Therapy");
+    await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute('content', "Vibe'N Thrive Vibro-Acoustic Therapy");
+    await expect(page.locator('body')).not.toContainText('Vibe & Thrive');
   });
 });
